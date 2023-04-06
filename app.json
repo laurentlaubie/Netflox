@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "NetFlox",
+    "slug": "NetFlox",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "NetFlox"
+}
