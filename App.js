@@ -1,21 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>hello me revoici pour de nouvelles aventures</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+// ================== Navigation ================== //
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// =============== components ======================= //
+import Home from './components/Home';
+import About from './components/About';
+import BarTab from './components/BarTab';
+
+const Stack = createNativeStackNavigator();
+
+  export default class App  extends React.Component {
+  
+    render() {
+            return (
+              <NavigationContainer>
+                <Stack.Navigator 
+                initialRouteName='dashboard'
+                screenOptions={{
+                  contentStyle: { 
+                    backgroundColor: 'black'
+                    },
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      color: '#ffffff',
+                    },
+                    headerStyle: {
+                      backgroundColor: 'black'
+                    },
+                    //headerTintColor: 'E50914'
+                }}>
+                  <Stack.Screen
+                    name='home'
+                    component={BarTab}
+                    //options={{title: 'Bienvenue sur vos séries favorites'}}
+                              options={{ headerShown: false }}
+
+
+
+                  />
+                  <Stack.Screen
+                    name='About'
+                    component={About}
+                    options={({ route }) => ({ title: route.params.name })}
+                    //{{ title: 'A propos ' }}
+                  />
+                </Stack.Navigator>
+              </NavigationContainer>
+            )
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
